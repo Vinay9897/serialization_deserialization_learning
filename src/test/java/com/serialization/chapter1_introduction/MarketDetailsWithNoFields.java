@@ -58,18 +58,17 @@ public class MarketDetailsWithNoFields {
 	@DisplayName("Test basic deserialize for Java")
 	void testDeserialize(){
 
-		try {
-			final var ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(serFile)));
-			MarketDataWithNoFields fromSerialize = null;
+		try(final var ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(serFile)));) {
+			
 			try {
-				fromSerialize = (MarketDataWithNoFields) ois.readObject();
+			final var fromSerialize = (MarketDataWithNoFields) ois.readObject();
+			System.out.println(fromSerialize);
+			System.out.println("After Serialization");
+			assertNotNull(fromSerialize);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("After Serialization");
-			System.out.println(fromSerialize);
-			assertNotNull(fromSerialize);
 			ois.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
