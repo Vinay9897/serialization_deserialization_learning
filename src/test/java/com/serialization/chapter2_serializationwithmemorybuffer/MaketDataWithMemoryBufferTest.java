@@ -38,7 +38,7 @@ public class MaketDataWithMemoryBufferTest {
 			System.out.println("Before Serialization");
 			System.out.println(marketData);
 			oos.writeObject(marketData);
-			oos.close();
+//			oos.close();
 		}
 		
 		
@@ -58,7 +58,7 @@ public class MaketDataWithMemoryBufferTest {
 			assertEquals(163.30, fromSerialize.getClose());
 			assertEquals(161.90, fromSerialize.getLast());
 			assertTrue(fromSerialize.isLevelOne());
-			ois.close();
+//			ois.close();
 		}
 	}
 
