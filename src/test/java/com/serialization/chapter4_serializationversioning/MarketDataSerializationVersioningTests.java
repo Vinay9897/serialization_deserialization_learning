@@ -1,4 +1,4 @@
-package com.serialization.chapter3_serializationwithfile;
+package com.serialization.chapter4_serializationversioning;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,12 +20,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
-public class MaketDataWithFileTest {
+public class MarketDataSerializationVersioningTests {
+	
 	private File serFile;
 
 	@BeforeEach
 	void setUp() throws IOException {
-		final var serPath = Path.of("src", "test", "resources", "MarketDataWithFileTest.ser");
+		final var serPath = Path.of("src", "test", "resources", "MarketDataWithVersioningTest.ser");
 
 		serFile = serPath.toFile();
 
@@ -37,9 +37,9 @@ public class MaketDataWithFileTest {
 	}
 
 	@Test
-	@DisplayName("Test serialization with file for Java POJO")
+	@DisplayName("Test serialization versioning for Java POJO")
 	void testSerialize() {
-		final var marketData = new MarketDataWithFile();
+		final var marketData = new MarketDataSerializationVersioning();
 		marketData.setSecurityId("Vinay");
 		marketData.setTime(1000L);
 		marketData.setOpen(160.30);
@@ -67,13 +67,13 @@ public class MaketDataWithFileTest {
 	}
 
 	@Test
-	@DisplayName("Test deserialize with file for Java POJO")
+	@DisplayName("Test deserialize for Java POJO")
 	void testDeserialize(){
 
 		try(final var ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(serFile)));) {
 			
 			try {
-			final var fromSerialize = (MarketDataWithFile) ois.readObject();
+			final var fromSerialize = (MarketDataSerializationVersioning) ois.readObject();
 			System.out.println("After Serialization");
 			System.out.println(fromSerialize);
 			assertNotNull(fromSerialize);

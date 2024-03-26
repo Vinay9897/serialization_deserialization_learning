@@ -38,7 +38,7 @@ public class MaketDataWithMemoryBufferTest {
 			System.out.println("Before Serialization");
 			System.out.println(marketData);
 			oos.writeObject(marketData);
-//			oos.close();
+			oos.close();
 		}
 		
 		
@@ -52,13 +52,13 @@ public class MaketDataWithMemoryBufferTest {
 			assertNotNull(fromSerialize);
 			assertEquals("Vinay", fromSerialize.getSecurityId());
 			assertEquals(1000L, fromSerialize.getTime());
-			assertEquals(160.30, fromSerialize.getOpen());
-			assertEquals(165.30, fromSerialize.getHigh());
-			assertEquals(150.30, fromSerialize.getLow());
-			assertEquals(163.30, fromSerialize.getClose());
-			assertEquals(161.90, fromSerialize.getLast());
+			assertEquals(160.30, fromSerialize.getOpen(),100.0);
+			assertEquals(165.30, fromSerialize.getHigh(),100.0);
+			assertEquals(150.30, fromSerialize.getLow(),100.0);
+			assertEquals(163.30, fromSerialize.getClose(),100.0);
+			assertEquals(161.90, fromSerialize.getLast(),100.0);
 			assertTrue(fromSerialize.isLevelOne());
-//			ois.close();
+			ois.close();
 		}
 	}
 
